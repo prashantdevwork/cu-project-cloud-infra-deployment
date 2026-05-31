@@ -31,6 +31,7 @@ module "asg" {
   target_group_arn  = module.alb.target_group_arn
 }
 
+# RDS module depends on VPC and ASG for security group and subnet information
 module "rds" {
   source = "./modules/rds"
 
@@ -38,4 +39,5 @@ module "rds" {
   private_subnets = module.vpc.private_subnets
   ec2_sg_id       = module.asg.ec2_sg_id
 }
+
 
